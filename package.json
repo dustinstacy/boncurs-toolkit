@@ -1,0 +1,25 @@
+{
+    "name": "boncurs-wizard",
+    "version": "1.0.0",
+    "description": "User Interface for Boncurs Bonding Curve Library",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "Boncurs",
+        "Bonding",
+        "Curve",
+        "Solidity",
+        "Ethereum",
+        "DeFi"
+    ],
+    "author": "Dustin Stacy",
+    "license": "MIT",
+    "dependencies": {
+        "@boncurs/contracts": "file:../boncurs/src/contracts/boncurs-contracts-0.1.0-alpha.1.tgz"
+    },
+    "devDependencies": {
+        "hardhat": "^2.22.18"
+    }
+}
