@@ -18,7 +18,6 @@ export function formatWeiToEther(wei: bigint, decimals: number = 18): string {
 }
 
 // Function to calculate purchase costs and sale returns based on the selected curve
-///@dev Extract this to a separate file in the future
 export function calculateValues(formData: ConvertedFormData): TableData {
 	const tokens = [];
 	const purchaseCosts = [];
@@ -51,7 +50,6 @@ export function calculateValues(formData: ConvertedFormData): TableData {
 				saleReturn = purchaseCost;
 				break;
 			case 'Linear Token Based':
-				///@dev Implement this in the future
 				purchaseCost = calculateLinearTokenBasedPurchaseCost(formData, supply);
 				saleReturn = purchaseCost;
 				break;
@@ -98,8 +96,16 @@ function calculateExponentialPurchaseCost(formData: ConvertedFormData, supply: b
 
 ///@dev Implement these functions in the future
 function calculateLinearPurchaseCost(formData: ConvertedFormData, supply: bigint): bigint {
-	console.log('Calculating Linear Purchase Cost with data:', formData);
-	return BigInt(0);
+	const { initialCost, scalingFactor } = formData;
+	if (supply == BigInt(0)) {
+		return initialCost;
+	} else if (scalingFactor == BASIS_POINTS) {
+		return ((supply + BigInt(1)) * initialCost * scalingFactor) / BASIS_POINTS;
+	}
+
+	let { initialCostAdjustment } = getInitialCostAdjustment(initialCost, scalingFactor);
+	let rawCost = ((supply + BigInt(1)) * initialCost * scalingFactor) / BASIS_POINTS;
+	return scalingFactor > BASIS_POINTS ? rawCost - initialCostAdjustment : rawCost;
 }
 
 ///@dev Implement these functions in the future
@@ -111,7 +117,6 @@ function calculateExponentialTokenBasedPurchaseCost(
 	return BigInt(0);
 }
 
-///@dev Implement these functions in the future
 function calculateLinearTokenBasedPurchaseCost(
 	formData: ConvertedFormData,
 	supply: bigint
