@@ -1,24 +1,52 @@
 <script lang="ts">
+	import Form from '../components/Form.svelte';
+	import type { FormData } from '../../types';
+
+	let formData: FormData = {
+		selectedCurve: '-',
+		initialReserveBalance: 1,
+		reserveRatio: 500000,
+		initialCost: 0.001,
+		scalingFactor: 10000
+	};
+
+	// Function to handle form submission with the data passed from the child component
+	function onSubmit(eventData: FormData): void {
+		console.log('Form data submitted:', eventData);
+		formData = eventData; // Store the submitted form data if needed
+	}
 </script>
 
-<svelte:head>
-	<title>Boncurs Tools</title>
-	<meta
-		name="A collection of tools to use with the Boncurs Bonding Curve Library"
-		content="Boncurs Tools"
-	/>
-</svelte:head>
+<div class="page">
+	<header>
+		<h1>Boncurs Tools</h1>
+	</header>
 
-<section>
-	<h1>Welcome to the Body</h1>
-</section>
+	<div class="body">
+		<Form {onSubmit} />
+		<div class="graph">
+			<h2>Graph</h2>
+			<!-- Placeholder for Graph -->
+			<div style="height: 400px;">Graph will go here</div>
+		</div>
+		<div class="table">
+			<h2>Table</h2>
+			<!-- Placeholder for Table -->
+			<table>
+				<tbody>
+					<tr><td>Row 1</td></tr>
+					<tr><td>Row 2</td></tr>
+					<tr><td>Row 3</td></tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<footer>
+		<p>Footer Content</p>
+	</footer>
+</div>
 
 <style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 0.6;
-	}
+	@import '../app.css';
 </style>
