@@ -1,0 +1,53 @@
+.table {
+	width: 100%;
+	padding: 20px;
+	margin-top: 20px;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Layout for larger screens (landscape mode) */
+@media (min-width: 768px) {
+	.table {
+		grid-column: 1 / -1; /* Table spans full width */
+		grid-row: 2; /* Table below form and graph */
+	}
+}
+
+/* For portrait view, the table spans full width and items stack vertically */
+@media (max-width: 767px) {
+	.table {
+		width: 100%;
+		margin: 0 auto; /* Center table */
+	}
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-bottom: 20px;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+th,
+td {
+	padding: 10px;
+	text-align: right;
+	border: 1px solid #ddd;
+}
+
+th {
+	background-color: #f4f4f4;
+}
+
+tr:nth-child(even) {
+	background-color: #f9f9f9;
+}
+
+td {
+	font-size: 1rem;
+}
