@@ -4,7 +4,7 @@
 	export let onSubmit: (eventData: FormData) => void; // Callback prop
 
 	let selectedCurve = '-';
-	let initialReserveBalance = 0;
+	let reserveBalance = 0;
 	let reserveRatio = 0;
 	let initialCost = 0;
 	let scalingFactor = 0;
@@ -13,7 +13,7 @@
 	function handleSubmit() {
 		const formData: FormData = {
 			selectedCurve,
-			initialReserveBalance,
+			reserveBalance,
 			reserveRatio,
 			initialCost,
 			scalingFactor
@@ -22,6 +22,7 @@
 	}
 
 	// Min/Max values for inputs
+	///@dev More specific to each curve
 	const reserveBalanceMin = 0.000000001;
 	const reserveBalanceMax = 100000000;
 	const reserveRatioMin = 1;
@@ -33,18 +34,17 @@
 
 	function updateFormValues() {
 		if (selectedCurve === 'Exponential') {
-			initialReserveBalance = 1;
+			reserveBalance = 1;
 			reserveRatio = 500000;
-			initialCost = 0; // Reset these to their default values
+			initialCost = 0;
 			scalingFactor = 0;
 		} else if (selectedCurve !== '-') {
-			initialCost = 0.001; // Reset these to default values for other curves
+			initialCost = 0.001;
 			scalingFactor = 10000;
 			reserveRatio = 0;
-			initialReserveBalance = 0;
+			reserveBalance = 0;
 		} else {
-			// Reset all fields when no curve is selected
-			initialReserveBalance = 0;
+			reserveBalance = 0;
 			reserveRatio = 0;
 			initialCost = 0;
 			scalingFactor = 0;
@@ -67,13 +67,12 @@
 		</div>
 
 		{#if selectedCurve === 'Exponential'}
-			<!-- Show additional inputs for "Exponential" -->
 			<div class="selector">
 				<label for="initial-reserve-balance">Initial Reserve Balance (in Ether):</label>
 				<input
 					id="initial-reserve-balance"
 					type="number"
-					bind:value={initialReserveBalance}
+					bind:value={reserveBalance}
 					min={reserveBalanceMin}
 					max={reserveBalanceMax}
 					step="any"
@@ -93,7 +92,6 @@
 				/>
 			</div>
 		{:else if selectedCurve !== '-'}
-			<!-- Show additional inputs for other curves -->
 			<div class="selector">
 				<label for="initial-cost">Initial Cost:</label>
 				<input
@@ -125,5 +123,5 @@
 </div>
 
 <style>
-	@import './Form.css'; /* External CSS import */
+	@import './Form.css';
 </style>
