@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { calculateValues } from '../utils/calculations';
 	import Form from '../components/Form.svelte';
+	import Graph from '../components/Graph.svelte';
 	import Table from '../components/Table.svelte';
 	import type { FormData, ConvertedFormData, TableData } from '../../types';
 
@@ -56,12 +57,7 @@
 
 	<div class="body">
 		<Form {onSubmit} />
-		<!-- @dev Implement Graph component in the future -->
-		<div class="graph">
-			<h2>Graph</h2>
-			<!-- Placeholder for Graph -->
-			<div style="height: 400px;">Graph will go here</div>
-		</div>
+		<Graph {tableData} />
 		<Table {tableData} />
 	</div>
 

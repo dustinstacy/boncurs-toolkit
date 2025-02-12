@@ -1,0 +1,33 @@
+.graph {
+	border: 2px dashed black;
+	padding: 1rem;
+	background-color: #c0c0c0;
+	display: flex; /* Use flexbox to center the canvas */
+	justify-content: center; /* Center canvas horizontally */
+	align-items: center; /* Center canvas vertically */
+	width: 100%; /* Full width of its grid column */
+	height: 100%; /* Fill available height in grid row */
+	box-sizing: border-box; /* Ensure padding does not cause overflow */
+}
+
+canvas {
+	display: block;
+	width: 100%; /* Make sure canvas takes full width of its container */
+	height: 100%; /* Make sure canvas takes full height of its container */
+	object-fit: contain; /* Ensure canvas content fits within container */
+}
+
+/* Layout for larger screens (landscape mode) */
+@media (min-width: 768px) {
+	.graph {
+		grid-column: 2;
+	}
+}
+
+/* For portrait view, the table spans full width and items stack vertically */
+@media (max-width: 767px) {
+	.graph {
+		width: 100%;
+		margin: 0 auto; /* Center graph horizontally */
+	}
+}

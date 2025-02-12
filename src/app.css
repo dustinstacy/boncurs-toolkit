@@ -2,7 +2,7 @@
 .page {
 	display: grid;
 	grid-template-rows: auto 1fr auto; /* Header, Body, Footer */
-	height: 100vh;
+	height: 100vh; /* Full height */
 }
 
 /* Body section */
@@ -11,7 +11,7 @@
 	grid-template-columns: 1fr; /* Single column by default */
 	grid-template-rows: auto 1fr auto; /* Form, Graph, Table */
 	padding: 1rem;
-	gap: 8px; /* Ensure there's always a small gap between rows */
+	gap: 8px; /* Small gap between rows */
 }
 
 header {
@@ -25,23 +25,4 @@ header {
 		grid-template-columns: 1fr 2fr; /* Form on left, Graph on right */
 		grid-template-rows: auto 1fr; /* Only form and graph in rows */
 	}
-
-	.graph {
-		grid-column: 2;
-	}
-}
-
-/* For portrait view, the table spans full width and items stack vertically */
-@media (max-width: 767px) {
-	.graph {
-		width: 100%;
-		margin: 0 auto; /* Center graph */
-	}
-}
-
-/* Outline styles for components */
-.graph {
-	border: 2px dashed black;
-	padding: 1rem;
-	background-color: #c0c0c0;
 }
