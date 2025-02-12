@@ -22,7 +22,7 @@ export function calculateValues(formData: ConvertedFormData): TableData {
 	const tokens = [];
 	const purchaseCosts = [];
 	const saleReturns = [];
-	const SUPPLY_MAX: bigint = BigInt(1000); ///@dev Variablize this in the future
+	const SUPPLY_MAX: bigint = BigInt(100); ///@dev Variablize this in the future
 
 	// Loop through the supply values
 	for (let supply: bigint = BigInt(0); supply <= SUPPLY_MAX; supply++) {
@@ -32,7 +32,7 @@ export function calculateValues(formData: ConvertedFormData): TableData {
 		switch (formData.selectedCurve) {
 			case 'Boncurs':
 				purchaseCost = calculateBoncursPurchaseCost(formData, supply);
-				saleReturn = calculateBoncursSaleReturn(formData, supply);
+				saleReturn = calculateBoncursSaleReturn(purchaseCost, formData, supply);
 				break;
 			case 'Exponential':
 				///@dev Implement this in the future
@@ -40,12 +40,10 @@ export function calculateValues(formData: ConvertedFormData): TableData {
 				saleReturn = purchaseCost; // for simplicity, we assume purchaseCost = saleReturn
 				break;
 			case 'Linear':
-				///@dev Implement this in the future
 				purchaseCost = calculateLinearPurchaseCost(formData, supply);
 				saleReturn = purchaseCost;
 				break;
 			case 'Exponential Token Based':
-				///@dev Implement this in the future
 				purchaseCost = calculateExponentialTokenBasedPurchaseCost(formData, supply);
 				saleReturn = purchaseCost;
 				break;
@@ -68,7 +66,6 @@ export function calculateValues(formData: ConvertedFormData): TableData {
 		saleReturns.push(saleReturn);
 	}
 
-	///@dev format the results to Ether
 	return { purchaseCosts, saleReturns, tokens };
 }
 
@@ -81,20 +78,24 @@ function calculateBoncursPurchaseCost(formData: ConvertedFormData, supply: bigin
 	return value / BASIS_POINTS;
 }
 
-function calculateBoncursSaleReturn(formData: ConvertedFormData, supply: bigint): bigint {
+function calculateBoncursSaleReturn(
+	purchaseCost: bigint,
+	formData: ConvertedFormData,
+	supply: bigint
+): bigint {
 	if (supply == BigInt(0)) {
 		return formData.initialCost;
 	}
-	return formData.reserveBalance / supply;
+	let newReserveBalance = purchaseCost + formData.reserveBalance;
+	let newSupply = supply + BigInt(1);
+	return newReserveBalance / newSupply;
 }
 
-///@dev Implement these functions in the future
 function calculateExponentialPurchaseCost(formData: ConvertedFormData, supply: bigint): bigint {
-	console.log('Calculating Exponential Purchase Cost with data:', formData);
+	///@dev Implement this in the future
 	return BigInt(0);
 }
 
-///@dev Implement these functions in the future
 function calculateLinearPurchaseCost(formData: ConvertedFormData, supply: bigint): bigint {
 	const { initialCost, scalingFactor } = formData;
 	if (supply == BigInt(0)) {
@@ -108,7 +109,6 @@ function calculateLinearPurchaseCost(formData: ConvertedFormData, supply: bigint
 	return scalingFactor > BASIS_POINTS ? rawCost - initialCostAdjustment : rawCost;
 }
 
-///@dev Implement these functions in the future
 function calculateExponentialTokenBasedPurchaseCost(
 	formData: ConvertedFormData,
 	supply: bigint
