@@ -1,19 +1,6 @@
 <script lang="ts">
-	export let tableData: { tokens: number[]; purchaseCosts: bigint[]; saleReturns: bigint[] };
-
-	function formatWeiToEther(wei: bigint, decimals: number = 18): string {
-		// Convert to string and handle Wei scaling manually
-		const weiString = wei.toString();
-
-		// Ensure the string is at least 19 digits (1 digit for the whole number, 18 for decimals)
-		const etherString = weiString.padStart(decimals + 1, '0'); // Add leading zeros if needed
-
-		// Split into integer and decimal parts
-		const integerPart = etherString.slice(0, etherString.length - decimals);
-		const decimalPart = etherString.slice(etherString.length - decimals);
-
-		return `${integerPart}.${decimalPart}`;
-	}
+	import { formatWeiToEther } from '../utils/calculations';
+	let { tableData } = $props();
 </script>
 
 <div class="table">
