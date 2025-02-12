@@ -1,107 +1,65 @@
-@import '@fontsource/fira-mono';
-
-:root {
-	--font-body: Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
-		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-	--font-mono: 'Fira Mono', monospace;
-	--color-bg-0: rgb(202, 216, 228);
-	--color-bg-1: hsl(209, 36%, 86%);
-	--color-bg-2: hsl(224, 44%, 95%);
-	--color-theme-1: #ff3e00;
-	--color-theme-2: #4075a6;
-	--color-text: rgba(0, 0, 0, 0.7);
-	--column-width: 42rem;
-	--column-margin-top: 4rem;
-	font-family: var(--font-body);
-	color: var(--color-text);
+/* Overall layout */
+.page {
+	display: grid;
+	grid-template-rows: auto 1fr auto; /* Header, Body, Footer */
+	height: 100vh;
 }
 
-body {
-	min-height: 100vh;
-	margin: 0;
-	background-attachment: fixed;
-	background-color: var(--color-bg-1);
-	background-size: 100vw 100vh;
-	background-image: radial-gradient(
-			50% 50% at 50% 50%,
-			rgba(255, 255, 255, 0.75) 0%,
-			rgba(255, 255, 255, 0) 100%
-		),
-		linear-gradient(180deg, var(--color-bg-0) 0%, var(--color-bg-1) 15%, var(--color-bg-2) 50%);
+/* Body section */
+.body {
+	display: grid;
+	grid-template-columns: 1fr; /* Single column by default */
+	grid-template-rows: auto 1fr auto; /* Form, Graph, Table */
+	padding: 1rem;
+	gap: 8px; /* Ensure there's always a small gap between rows */
 }
 
-h1,
-h2,
-p {
-	font-weight: 400;
-}
-
-p {
-	line-height: 1.5;
-}
-
-a {
-	color: var(--color-theme-1);
-	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: underline;
-}
-
-h1 {
-	font-size: 2rem;
+header {
+	background-color: #f0f0f0;
 	text-align: center;
 }
 
-h2 {
-	font-size: 1rem;
-}
+/* Layout for larger screens (landscape mode) */
+@media (min-width: 768px) {
+	.body {
+		grid-template-columns: 1fr 2fr; /* Form on left, Graph on right */
+		grid-template-rows: auto 1fr; /* Only form and graph in rows */
+	}
 
-pre {
-	font-size: 16px;
-	font-family: var(--font-mono);
-	background-color: rgba(255, 255, 255, 0.45);
-	border-radius: 3px;
-	box-shadow: 2px 2px 6px rgb(255 255 255 / 25%);
-	padding: 0.5em;
-	overflow-x: auto;
-	color: var(--color-text);
-}
+	.graph {
+		grid-column: 2;
+	}
 
-.text-column {
-	display: flex;
-	max-width: 48rem;
-	flex: 0.6;
-	flex-direction: column;
-	justify-content: center;
-	margin: 0 auto;
-}
-
-input,
-button {
-	font-size: inherit;
-	font-family: inherit;
-}
-
-button:focus:not(:focus-visible) {
-	outline: none;
-}
-
-@media (min-width: 720px) {
-	h1 {
-		font-size: 2.4rem;
+	.table {
+		grid-column: 1 / -1; /* Table spans full width */
+		grid-row: 2; /* Table below form and graph */
 	}
 }
 
-.visually-hidden {
-	border: 0;
-	clip: rect(0 0 0 0);
-	height: auto;
-	margin: 0;
-	overflow: hidden;
-	padding: 0;
-	position: absolute;
-	width: 1px;
-	white-space: nowrap;
+/* For portrait view, the table spans full width and items stack vertically */
+@media (max-width: 767px) {
+	.graph {
+		width: 100%;
+		margin: 0 auto; /* Center graph */
+	}
+
+	.table {
+		width: 100%;
+		margin: 0 auto; /* Center table */
+	}
+}
+
+/* Outline styles for components */
+.graph,
+.table {
+	border: 2px dashed black;
+	padding: 1rem;
+}
+
+.graph {
+	background-color: #c0c0c0;
+}
+
+.table {
+	background-color: #a0a0a0;
 }
