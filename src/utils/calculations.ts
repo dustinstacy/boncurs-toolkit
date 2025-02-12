@@ -3,6 +3,20 @@ import type { ConvertedFormData, TableData } from '../../types';
 // Standard values for calculations
 const BASIS_POINTS: bigint = BigInt(10000);
 
+export function formatWeiToEther(wei: bigint, decimals: number = 18): string {
+	// Convert to string and handle Wei scaling manually
+	const weiString = wei.toString();
+
+	// Ensure the string is at least 19 digits (1 digit for the whole number, 18 for decimals)
+	const etherString = weiString.padStart(decimals + 1, '0'); // Add leading zeros if needed
+
+	// Split into integer and decimal parts
+	const integerPart = etherString.slice(0, etherString.length - decimals);
+	const decimalPart = etherString.slice(etherString.length - decimals);
+
+	return `${integerPart}.${decimalPart}`.slice(0, -9);
+}
+
 // Function to calculate purchase costs and sale returns based on the selected curve
 ///@dev Extract this to a separate file in the future
 export function calculateValues(formData: ConvertedFormData): TableData {
