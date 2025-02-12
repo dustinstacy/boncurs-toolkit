@@ -22,7 +22,7 @@ export function calculateValues(formData: ConvertedFormData): TableData {
 	const tokens = [];
 	const purchaseCosts = [];
 	const saleReturns = [];
-	const SUPPLY_MAX: bigint = BigInt(100); ///@dev Variablize this in the future
+	const SUPPLY_MAX: bigint = BigInt(1000); ///@dev Variablize this in the future
 
 	// Loop through the supply values
 	for (let supply: bigint = BigInt(0); supply <= SUPPLY_MAX; supply++) {
@@ -113,8 +113,29 @@ function calculateExponentialTokenBasedPurchaseCost(
 	formData: ConvertedFormData,
 	supply: bigint
 ): bigint {
-	console.log('Calculating Exponential Token Based Purchase Cost with data:', formData);
-	return BigInt(0);
+	let amount = BigInt(1);
+	let one = BigInt(1);
+	let two = BigInt(2);
+	let six = BigInt(6);
+	let { initialCost, scalingFactor } = formData;
+
+	if (supply == BigInt(0)) {
+		if (amount == one) {
+			return initialCost;
+		} else {
+			let sum = ((amount - one) * amount * (two * (amount - one) + one)) / six;
+			return (sum * initialCost) / scalingFactor + initialCost * amount;
+		}
+	} else {
+		let sum1 = ((supply - one) * supply * (two * (supply - one) + one)) / six;
+		let sum2 =
+			((supply - one + amount) * (supply + amount) * (two * (supply - one + amount) + one)) / six;
+		let totalSum = sum2 - sum1;
+		let scaledTotal = (totalSum * initialCost) / scalingFactor;
+		let initialCostAdjumsent = initialCost * amount;
+		let totalCost = scaledTotal + initialCostAdjumsent;
+		return totalCost;
+	}
 }
 
 function calculateLinearTokenBasedPurchaseCost(
