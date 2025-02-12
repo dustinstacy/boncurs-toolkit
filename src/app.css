@@ -29,11 +29,6 @@ header {
 	.graph {
 		grid-column: 2;
 	}
-
-	.table {
-		grid-column: 1 / -1; /* Table spans full width */
-		grid-row: 2; /* Table below form and graph */
-	}
 }
 
 /* For portrait view, the table spans full width and items stack vertically */
@@ -42,24 +37,11 @@ header {
 		width: 100%;
 		margin: 0 auto; /* Center graph */
 	}
-
-	.table {
-		width: 100%;
-		margin: 0 auto; /* Center table */
-	}
 }
 
 /* Outline styles for components */
-.graph,
-.table {
+.graph {
 	border: 2px dashed black;
 	padding: 1rem;
-}
-
-.graph {
 	background-color: #c0c0c0;
-}
-
-.table {
-	background-color: #a0a0a0;
 }
