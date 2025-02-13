@@ -54,6 +54,8 @@ Usage :
 3. Set the scaling factor in basis points (1e4)
 4. Go Boncurs!
 
+[Check it out](https://boncurs-toolkit.vercel.app/)
+
 ## Learn More
 
 Documentation for the Boncurs Bonding Curve Library: [Docs](https://boncurs.gitbook.io/boncurs)
