@@ -52,19 +52,16 @@
 <div class="page">
 	<header>
 		<!-- @dev Implement Header component in the future -->
-		<h1>Boncurs Tools</h1>
+		<h1>Boncurs Curve Visualizer</h1>
 	</header>
 
 	<div class="body">
-		<Form {onSubmit} />
-		<Graph {tableData} />
+		<div class="form-graph">
+			<Form {onSubmit} />
+			<Graph {tableData} />
+		</div>
 		<Table {tableData} />
 	</div>
-
-	<footer>
-		<!-- @dev Implement Footer component in the future -->
-		<p>Footer Content</p>
-	</footer>
 </div>
 
 <style>

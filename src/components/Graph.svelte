@@ -28,7 +28,7 @@
 							{
 								label: 'Purchase Costs',
 								data: purchaseCostsNumbers, // Y-axis data
-								borderColor: 'blue', // Line color
+								borderColor: 'purple', // Line color
 								fill: false, // Do not fill the area under the line
 								tension: 0.1 // Line curve
 							}

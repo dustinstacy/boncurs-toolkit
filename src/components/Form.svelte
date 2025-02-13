@@ -52,75 +52,73 @@
 	}
 </script>
 
-<div class="form-container">
-	<form on:submit|preventDefault={handleSubmit}>
-		<div class="selector">
-			<label for="curve-type">Choose curve type:</label>
-			<select id="curve-type" bind:value={selectedCurve} on:change={updateFormValues}>
-				<option value="-">-</option>
-				<option value="Boncurs">Boncurs</option>
-				<option value="Exponential">Exponential</option>
-				<option value="Linear">Linear</option>
-				<option value="Exponential Token Based">Exponential Token Based</option>
-				<option value="Linear Token Based">Linear Token Based</option>
-			</select>
+<form on:submit|preventDefault={handleSubmit}>
+	<h3>Curve type:</h3>
+	<div class="selector">
+		<select id="curve-type" bind:value={selectedCurve} on:change={updateFormValues}>
+			<option value="-">-</option>
+			<option value="Boncurs">Boncurs</option>
+			<!-- <option value="Exponential">Exponential</option> -->
+			<option value="Linear">Linear</option>
+			<option value="Exponential Token Based">Exponential Token Based</option>
+			<option value="Linear Token Based">Linear Token Based</option>
+		</select>
+	</div>
+
+	<!-- {#if selectedCurve === 'Exponential'} -->
+	<!-- <div class="selector">
+			<label for="initial-reserve-balance">Initial Reserve Balance (in Ether):</label>
+			<input
+				id="initial-reserve-balance"
+				type="number"
+				bind:value={reserveBalance}
+				min={reserveBalanceMin}
+				max={reserveBalanceMax}
+				step="any"
+				placeholder="Enter Initial Reserve Balance"
+			/>
 		</div>
+		<div class="selector">
+			<label for="reserve-ratio">Reserve Ratio (in ppm):</label>
+			<input
+				id="reserve-ratio"
+				type="number"
+				bind:value={reserveRatio}
+				min={reserveRatioMin}
+				max={reserveRatioMax}
+				step="any"
+				placeholder="Enter Reserve Ratio"
+			/>
+		</div> -->
+	{#if selectedCurve !== '-'}
+		<div class="selector">
+			<label for="initial-cost">Initial Cost:</label>
+			<input
+				id="initial-cost"
+				type="number"
+				bind:value={initialCost}
+				min={initialCostMin}
+				max={initialCostMax}
+				step="any"
+				placeholder="Enter Initial Cost"
+			/>
+		</div>
+		<div class="selector">
+			<label for="scaling-factor">Scaling Factor:</label>
+			<input
+				id="scaling-factor"
+				type="number"
+				bind:value={scalingFactor}
+				min={scalingFactorMin}
+				max={scalingFactorMax}
+				step="any"
+				placeholder="Enter Scaling Factor"
+			/>
+		</div>
+	{/if}
 
-		{#if selectedCurve === 'Exponential'}
-			<div class="selector">
-				<label for="initial-reserve-balance">Initial Reserve Balance (in Ether):</label>
-				<input
-					id="initial-reserve-balance"
-					type="number"
-					bind:value={reserveBalance}
-					min={reserveBalanceMin}
-					max={reserveBalanceMax}
-					step="any"
-					placeholder="Enter Initial Reserve Balance"
-				/>
-			</div>
-			<div class="selector">
-				<label for="reserve-ratio">Reserve Ratio (in ppm):</label>
-				<input
-					id="reserve-ratio"
-					type="number"
-					bind:value={reserveRatio}
-					min={reserveRatioMin}
-					max={reserveRatioMax}
-					step="any"
-					placeholder="Enter Reserve Ratio"
-				/>
-			</div>
-		{:else if selectedCurve !== '-'}
-			<div class="selector">
-				<label for="initial-cost">Initial Cost:</label>
-				<input
-					id="initial-cost"
-					type="number"
-					bind:value={initialCost}
-					min={initialCostMin}
-					max={initialCostMax}
-					step="any"
-					placeholder="Enter Initial Cost"
-				/>
-			</div>
-			<div class="selector">
-				<label for="scaling-factor">Scaling Factor:</label>
-				<input
-					id="scaling-factor"
-					type="number"
-					bind:value={scalingFactor}
-					min={scalingFactorMin}
-					max={scalingFactorMax}
-					step="any"
-					placeholder="Enter Scaling Factor"
-				/>
-			</div>
-		{/if}
-
-		<button type="submit">Submit</button>
-	</form>
-</div>
+	<button type="submit">Submit</button>
+</form>
 
 <style>
 	@import './Form.css';

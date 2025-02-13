@@ -1,28 +1,51 @@
-/* Overall layout */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 .page {
-	display: grid;
-	grid-template-rows: auto 1fr auto; /* Header, Body, Footer */
-	height: 100vh; /* Full height */
+	display: flex;
+	flex-direction: column;
+	color: rgb(83, 83, 83);
+	height: 100vh;
+	background-color: #e9e9e9;
+	overflow-x: hidden;
 }
 
-/* Body section */
 .body {
-	display: grid;
-	grid-template-columns: 1fr; /* Single column by default */
-	grid-template-rows: auto 1fr auto; /* Form, Graph, Table */
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex: 1;
+	gap: 8px;
+	padding-bottom: 40px;
+	background-color: #e9e9e9;
+}
+
+.form-graph {
+	display: flex;
+	flex-direction: row;
+	align-self: center;
+	align-items: center;
+	justify-content: space-around;
+	margin: 1rem;
 	padding: 1rem;
-	gap: 8px; /* Small gap between rows */
+	width: 100%;
+	flex-wrap: wrap;
+	gap: 1rem;
 }
 
 header {
-	background-color: #f0f0f0;
+	display: flex;
+	z-index: 1;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	width: 100vw;
+	color: rgb(83, 83, 83);
+	background: #ecf0f3;
+	height: 60px;
 	text-align: center;
-}
-
-/* Layout for larger screens (landscape mode) */
-@media (min-width: 768px) {
-	.body {
-		grid-template-columns: 1fr 2fr; /* Form on left, Graph on right */
-		grid-template-rows: auto 1fr; /* Only form and graph in rows */
-	}
+	font-weight: 200;
+	border: 1px solid #c0c0c0;
+	box-shadow: 4px 12px 10px #cac9b1;
+	font-family: 'Poppins', sans-serif;
 }
