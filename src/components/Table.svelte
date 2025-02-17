@@ -16,7 +16,7 @@
 		<tbody>
 			{#each tableData.tokens as token, index}
 				<tr>
-					<td>{token + 1}</td>
+					<td>{token}</td>
 					<td>{formatWeiToEther(tableData.purchaseCosts[index])}</td>
 					<td>{formatWeiToEther(tableData.saleReturns[index])}</td>
 				</tr>

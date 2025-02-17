@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { calculateValues } from '../utils/calculations';
+	import Header from '../components/Header.svelte';
 	import Form from '../components/Form.svelte';
 	import Graph from '../components/Graph.svelte';
 	import Table from '../components/Table.svelte';
@@ -7,10 +8,11 @@
 
 	let formData: FormData = {
 		selectedCurve: '-',
-		reserveBalance: 0,
-		reserveRatio: 0,
 		initialCost: 0,
-		scalingFactor: 0
+		scalingFactor: 0,
+		reserveBalance: 0,
+		tokenCount: 0,
+		step: 0
 	};
 
 	// Declare tableData object as reactive
@@ -24,17 +26,17 @@
 	function onSubmit(eventData: FormData) {
 		formData = eventData;
 
-		let convertedReserveBalance = convertEtherToWei(formData.reserveBalance);
 		let convertedInitialCost = convertEtherToWei(formData.initialCost);
 		let convertedScalingFactor = BigInt(formData.scalingFactor);
-		let convertedReserveRatio = BigInt(formData.reserveRatio);
+		let convertedReserveBalance = convertEtherToWei(formData.reserveBalance);
 
 		let convertedFormData: ConvertedFormData = {
 			selectedCurve: formData.selectedCurve,
-			reserveBalance: convertedReserveBalance,
-			reserveRatio: convertedReserveRatio,
 			initialCost: convertedInitialCost,
-			scalingFactor: convertedScalingFactor
+			scalingFactor: convertedScalingFactor,
+			reserveBalance: convertedReserveBalance,
+			tokenCount: formData.tokenCount,
+			step: formData.step
 		};
 
 		// Call calculateValues to get purchase costs and sale returns
@@ -50,17 +52,15 @@
 </script>
 
 <div class="page">
-	<header>
-		<!-- @dev Implement Header component in the future -->
-		<h1>Boncurs Curve Visualizer</h1>
-	</header>
-
+	<Header />
 	<div class="body">
-		<div class="form-graph">
+		<div class="column">
 			<Form {onSubmit} />
-			<Graph {tableData} />
 		</div>
-		<Table {tableData} />
+		<div class="column">
+			<Graph {tableData} />
+			<Table {tableData} />
+		</div>
 	</div>
 </div>
 

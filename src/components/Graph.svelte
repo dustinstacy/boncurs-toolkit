@@ -12,11 +12,13 @@
 		if (tableData && tableData.tokens && tableData.purchaseCosts) {
 			// Convert bigint to number (since Chart.js can't handle bigint)
 			const purchaseCostsNumbers = tableData.purchaseCosts.map((cost: bigint) => Number(cost));
+			const saleReturnNumbers = tableData.saleReturns.map((returns: bigint) => Number(returns));
 
 			// If the chart already exists, we update the chart data and redraw
 			if (chart) {
 				chart.data.labels = tableData.tokens;
 				chart.data.datasets[0].data = purchaseCostsNumbers;
+				chart.data.datasets[1].data = saleReturnNumbers;
 				chart.update();
 			} else {
 				// Create the chart if it does not exist yet
@@ -28,13 +30,23 @@
 							{
 								label: 'Purchase Costs',
 								data: purchaseCostsNumbers, // Y-axis data
-								borderColor: 'purple', // Line color
+								borderColor: '#efb036', // Line color
+								backgroundColor: 'black',
 								fill: false, // Do not fill the area under the line
-								tension: 0.1 // Line curve
+								tension: 0.2 // Line curve
+							},
+							{
+								label: 'Sale Returns',
+								data: saleReturnNumbers,
+								borderColor: '#23486a',
+								backgroundColor: 'black',
+								fill: false,
+								tension: 0.2
 							}
 						]
 					},
 					options: {
+						backgroundColor: 'black',
 						responsive: true,
 						scales: {
 							x: {
@@ -48,7 +60,7 @@
 									display: true,
 									text: 'Purchase Costs'
 								},
-								beginAtZero: true,
+								beginAtZero: false,
 								ticks: {
 									// Custom tick formatting using formatWeiToEther
 									callback: function (tickValue: number | string) {

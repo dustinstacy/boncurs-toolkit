@@ -21,11 +21,10 @@ export function formatWeiToEther(wei: bigint, decimals: number = 18): string {
 export function calculateValues(formData: ConvertedFormData): TableData {
 	const tokens = [];
 	const purchaseCosts = [];
-	const saleReturns = [];
-	const SUPPLY_MAX: bigint = BigInt(100); ///@dev Variablize this in the future
+	const saleReturns = []; ///@dev Variablize this in the future
 
 	// Loop through the supply values
-	for (let supply: bigint = BigInt(0); supply <= SUPPLY_MAX; supply++) {
+	for (let supply: bigint = BigInt(0); supply <= formData.tokenCount; supply++) {
 		let purchaseCost: bigint, saleReturn: bigint;
 
 		// Calculate purchase cost and sale return based on selected curve
@@ -61,9 +60,11 @@ export function calculateValues(formData: ConvertedFormData): TableData {
 		formData.reserveBalance += purchaseCost;
 
 		// Push the results to the arrays
-		tokens.push(Number(supply));
-		purchaseCosts.push(purchaseCost);
-		saleReturns.push(saleReturn);
+		if (supply == BigInt(0) || (supply + BigInt(1)) % BigInt(formData.step) == BigInt(0)) {
+			tokens.push(Number(supply + BigInt(1)));
+			purchaseCosts.push(purchaseCost);
+			saleReturns.push(saleReturn);
+		}
 	}
 
 	return { purchaseCosts, saleReturns, tokens };
