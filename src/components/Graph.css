@@ -1,54 +1,10 @@
 .graph {
-	display: flex; /* Use flexbox to center the canvas */
-	justify-content: center; /* Center canvas horizontally */
-	align-items: center; /* Center canvas vertically */
-	border-radius: 20px;
-	border: 1px solid #d3d3d3;
-	padding: 20px;
-	background: #ecf0f3;
-	box-shadow:
-		14px 14px 20px #cbced1,
-		-14px -14px 20px white;
-	font-family: 'Poppins', sans-serif;
-}
-
-canvas {
+	display: flex;
+	align-self: center;
+	max-width: 850px;
 	width: 100%;
-}
-
-/* Small devices such as large phones (640px and up) */
-@media only screen and (min-width: 640px) {
-	.graph,
-	canvas {
-		height: 350px;
-		width: 500px;
-	}
-}
-
-/* Medium devices such as tablets (768px and up) */
-@media only screen and (min-width: 768px) {
-	.graph,
-	canvas {
-		height: 450px;
-		width: 700px;
-		margin-top: 20px;
-	}
-}
-
-/* Largest devices such as desktops (1280px and up) */
-@media only screen and (min-width: 1024px) {
-	.graph,
-	canvas {
-		height: 450px;
-		width: 600px;
-	}
-}
-
-/* Largest devices such as desktops (1280px and up) */
-@media only screen and (min-width: 1280px) {
-	.graph,
-	canvas {
-		height: 450px;
-		width: 800px;
-	}
+	padding: 20px;
+	background: var(--white-color);
+	border-radius: 8px;
+	border: 3px solid var(--background3-color);
 }
