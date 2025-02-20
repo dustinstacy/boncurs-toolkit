@@ -1,10 +1,39 @@
 .graph {
 	display: flex;
 	align-self: center;
-	max-width: 850px;
-	width: 100%;
-	padding: 20px;
+	width: 900px;
+	margin: 20px;
 	background: var(--white-color);
 	border-radius: 8px;
 	border: 3px solid var(--background3-color);
+	box-sizing: border-box;
+}
+
+canvas {
+	padding: 20px;
+}
+
+@media (max-width: 1440px) {
+	.graph {
+		width: 800px;
+	}
+}
+
+@media (max-width: 1280px) {
+	.graph {
+		width: 700px;
+	}
+}
+
+@media (max-width: 1024px) {
+	.graph {
+		width: 500px;
+	}
+}
+
+@media (max-width: 768px) {
+	.graph,
+	canvas {
+		width: 100%;
+	}
 }
