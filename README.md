@@ -35,7 +35,9 @@ Current available tools:
 ## Tools
 
 #### Curve Visualizer
-![image](https://github.com/user-attachments/assets/25b4de36-12a3-4d97-ba4a-b42315c76dae)
+
+![image](https://github.com/user-attachments/assets/fec9e629-2630-4e11-88de-9a8a220fd4ba)
+
 
 The Curve Visualizer is an interactive tool that allows users to input parameters and visualize the resulting bonding curve using the Boncurs Bonding Curve Library. It generates both a graphical representation and a data table showing the purchase cost and sale return for each token threshold, helping users understand how token pricing and returns change at different supply levels. By adjusting the input parameters, users can see how changes to the initial cost and scaling factor impact the curve.
 
