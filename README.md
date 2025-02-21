@@ -60,6 +60,8 @@ Usage :
 
 ## Learn More
 
+Introducing the Boncurs Bonding Curve Library: [Medium](https://medium.com/@cloudwalker0013/introducing-the-boncurs-bonding-curve-library-52ad64a51b85)
+
 Documentation for the Boncurs Bonding Curve Library: [Docs](https://boncurs.gitbook.io/boncurs)
 
 NPM package: [NPM](https://www.npmjs.com/package/boncurs)
